@@ -18,9 +18,6 @@ public class Lion {
         }
     }
 
-    public Lion(String sex) {
-    }
-
     public int getKittens() {
         return feline.getKittens();
     }
@@ -29,7 +26,7 @@ public class Lion {
         return hasMane;
     }
 
-    public List<String> getFood(String s) throws Exception {
+    public List getFood() throws Exception {
         return feline.getFood("Хищник");
     }
 }

@@ -1,39 +1,35 @@
 package com.example;
 
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.mockito.MockitoAnnotations;
 
 import static junit.framework.TestCase.assertEquals;
 
 @RunWith(Parameterized.class)
-public class ParamLionTest{
+public class ParamLionTest {
 
     private final String sex;
+    private final boolean expectedResult;
 
-    public ParamLionTest(String sex, boolean expected) {
+    public ParamLionTest(String sex, boolean expectedResult) {
         this.sex = sex;
-    }
-
-    @Before
-    public void init() {
-        MockitoAnnotations.openMocks(this);
+        this.expectedResult = expectedResult;
     }
 
     @Parameterized.Parameters
     public static Object[] getSexData() {
         return new Object [][] {
                 {"Самец", true},
-                {"Самец", false}
+                {"Самка", false}
         };
     }
 
     @Test
-    public void testLionShouldHaveManeOrNot() {
-        Lion lion = new Lion(sex);
+    public void testLionShouldHaveManeOrNot() throws Exception {
+        Feline feline = new Feline();
+        Lion lion = new Lion(sex, feline);
         boolean actual = lion.doesHaveMane();
-        assertEquals(false, actual);
+        assertEquals(expectedResult, actual);
     }
 }
